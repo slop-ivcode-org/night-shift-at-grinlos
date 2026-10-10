@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Night Shift at Grinlo's</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div id="game">
+    <canvas id="view" width="1280" height="720"></canvas>
+
+    <!-- HUD -->
+    <div id="hud" class="hidden">
+      <div id="hud-time"><div id="time-text">12 AM</div><div id="night-text">Night 1</div></div>
+      <div id="hud-power">Power left: <b id="power-text">100</b>%<br>Usage: <span id="usage-bars"></span></div>
+      <div id="caption"></div>
+    </div>
+
+    <!-- Office door controls -->
+    <div id="office-ui" class="hidden">
+      <div class="door-panel left">
+        <button id="btn-ldoor" class="dbtn door" title="Left door [A]">DOOR</button>
+        <button id="btn-llight" class="dbtn light" title="Left light [Q]">LIGHT</button>
+      </div>
+      <div class="door-panel right">
+        <button id="btn-rdoor" class="dbtn door" title="Right door [D]">DOOR</button>
+        <button id="btn-rlight" class="dbtn light" title="Right light [E]">LIGHT</button>
+      </div>
+    </div>
+
+    <!-- Camera UI -->
+    <div id="cam-ui" class="hidden">
+      <div id="cam-name"></div>
+      <div id="map">
+        <svg viewBox="0 0 100 100" preserveAspectRatio="none" id="map-svg"></svg>
+        <div class="you">YOU</div>
+      </div>
+    </div>
+
+    <div id="cam-toggle" class="hidden">▲ CAMERAS [SPACE] ▲</div>
+
+    <!-- Menu -->
+    <div id="menu" class="screen">
+      <h1>NIGHT SHIFT<br><span>at Grinlo's Pizza Party</span></h1>
+      <div class="menu-buttons">
+        <button id="btn-new">New Game</button>
+        <button id="btn-continue">Continue</button>
+        <button id="btn-custom-toggle">Custom Night</button>
+        <button id="btn-howto-toggle">How to Play</button>
+      </div>
+      <div id="custom-panel" class="panel hidden">
+        <h3>Custom Night (AI 0-20)</h3>
+        <label>Patches (rabbit, left) <input type="number" id="ai-patches" min="0" max="20" value="10"></label>
+        <label>Clank (crow, right) <input type="number" id="ai-clank" min="0" max="20" value="10"></label>
+        <label>Grinlo (bear, right) <input type="number" id="ai-grinlo" min="0" max="20" value="10"></label>
+        <label>Mimi (fox, left) <input type="number" id="ai-mimi" min="0" max="20" value="10"></label>
+        <button id="btn-custom-start">Start</button>
+      </div>
+      <div id="howto-panel" class="panel hidden">
+        <h3>How to Play</h3>
+        <p>Survive from 12 AM to 6 AM in the security office. The animatronics roam at night and try to reach your <b>two doors</b>.</p>
+        <ul>
+          <li><b>SPACE / S</b>: raise or lower the camera monitor. Click the map to switch cameras, or use the arrow keys.</li>
+          <li><b>A / D</b>: close or open the left and right doors.</li>
+          <li><b>Q / E</b>: turn on the left or right hall light to see who is in the doorway.</li>
+          <li>Each thing you use drains <b>power</b>. If power runs out... good luck.</li>
+          <li><b>Patches</b> comes down the west (left) hall. <b>Clank</b> comes down the east (right) hall.</li>
+          <li><b>Grinlo</b> only moves when you are not watching him. He goes for the right door while your cameras are up.</li>
+          <li><b>Mimi</b> hides in Curtain Cove. If you never use the cameras she gets restless and <b>runs</b> to the left door.</li>
+          <li>If a door button stops working, someone is already inside...</li>
+        </ul>
+      </div>
+      <div class="footer">Headphones recommended. Click anywhere to enable sound.</div>
+    </div>
+
+    <div id="intro" class="screen hidden"><div class="big">12:00 AM</div><div id="intro-night">1st Night</div></div>
+
+    <div id="gameover" class="screen hidden">
+      <div class="big red">GAME OVER</div>
+      <div id="gameover-text"></div>
+      <div class="menu-buttons row">
+        <button id="btn-retry">Try Again</button>
+        <button id="btn-menu1">Main Menu</button>
+      </div>
+    </div>
+
+    <div id="win" class="screen hidden">
+      <div class="clock"><div class="roll-wrap"><div class="roll"><span>5</span><span>6</span></div></div>&nbsp;AM</div>
+      <div id="win-text"></div>
+      <div class="menu-buttons row" id="win-buttons">
+        <button id="btn-next">Next Night</button>
+        <button id="btn-menu2">Main Menu</button>
+      </div>
+    </div>
+  </div>
+  <script src="game.js"></script>
+</body>
+</html>
